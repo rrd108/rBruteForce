@@ -45,7 +45,7 @@ If you have a problem with rBruteForce please report [here](https://github.com/r
 
 # Documentation
 
-rBruteForce bans IP-s own unsuccessful login or any other method.
+rBruteForce bans IP-s on unsuccessful login or any other method.
 
 ## Usage
 
