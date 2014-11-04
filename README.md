@@ -41,7 +41,7 @@ Plugin::load('RBruteForce', ['bootstrap' => false, 'routes' => true]);
 
 ## Reporting Issues
 
-If you have a problem with rBruteForce please drop me a mail rrd@1108.cc
+If you have a problem with rBruteForce please report [here](https://github.com/rrd108/rBruteForce/issues)
 
 # Documentation
 
