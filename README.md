@@ -90,6 +90,18 @@ $options = [
 $this->RBruteForce->check($options);
 ```
 
+You do not have to include options where default value is good for you. For example.
+
+```php
+$this->RBruteForce->check(
+		[
+		'maxAttempts' => 3,
+		'attemptLog' => 'all'
+		]
+	);
+```
+
+
 ### maxAttempts
 
 Users will banned after this many unsuccessful attempts. Normally 3-5 should be enough.
