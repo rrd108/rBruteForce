@@ -14,7 +14,7 @@ With rBruteForce you could protect your CakePHP applications from Brute Force at
 
 ## Installation
 
-* Create the database tables.
+* Create the database tables. The schema could be found in `config/Schema/rBruteForce.sql`.
 
 ```sql
 CREATE TABLE IF NOT EXISTS `rbruteforcelogs` (
@@ -45,11 +45,11 @@ If you have a problem with rBruteForce please report [here](https://github.com/r
 
 # Documentation
 
-rBruteForce bans IP-s on unsuccessful login or any other method.
+rBruteForce bans IP-s on unsuccessful login, or on any other method.
 
 ## Usage
 
-As this plugin is a component you should add it to your `Controller`'s $components array.
+As this plugin is a component you should add it to your `Controller`'s `$components` array.
 
 ```php
 class UsersController extends AppController {
@@ -89,6 +89,18 @@ $options = [
 	];
 $this->RBruteForce->check($options);
 ```
+
+You do not have to include options where default value is good for you. For example.
+
+```php
+$this->RBruteForce->check(
+		[
+		'maxAttempts' => 3,
+		'attemptLog' => 'all'
+		]
+	);
+```
+
 
 ### maxAttempts
 
@@ -134,8 +146,8 @@ not worry about this till you have less than a million record.
 
 ## How does it work?
 
-When a user (or an automated attack) send some data to login (or any other) function cakePHP will
-call your controller's method. In this method you should have
+When a user (or an automated attack) send some data to login (or any other) function CakePHP will
+call your controller's corresponding method. In this method you should have
 
 ```php
 $this->RBruteForce->check();
