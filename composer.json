@@ -1,0 +1,38 @@
+{
+	"name": "rrd/rbruteforce",
+	"description": "CakePHP 3 Plugin for Protection Against BruteForce Attacks",
+	"type": "cakephp-plugin",
+	"keywords": ["cakephp", "brute force", "security"],
+	"homepage": "https://github.com/rrd108/rBruteForce",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "rrd",
+			"homepage": "http://webmania.cc",
+			"role": "Author"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/rrd108/rBruteForce/issues",
+		"source": "https://github.com/rrd108/rBruteForce"
+	},
+	"require": {
+		"cakephp/cakephp": "3.0.*-dev",
+		"cakephp/plugin-installer": "*"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "4.1.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"RBruteForce\\": "src",
+			"RBruteForce\\Test\\Fixture\\": "tests\\Fixture"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Cake\\Test\\": "vendor/cakephp/cakephp/tests",
+			"RBruteForce\\Test\\": "tests"
+		}
+	}
+}
