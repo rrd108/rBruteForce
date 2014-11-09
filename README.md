@@ -78,12 +78,12 @@ Let's see an example for the `UsersController` `login` method with rBruteForce
 ```php
 public function login() {
 	if ($this->request->is('post')) {
-		$this->RBruteForce->check();		//if it is here - banned out user (IP) would not able to login even with correct username/password
 		$user = $this->Auth->identify();
 		if ($user) {
 			$this->Auth->setUser($user);
 			return $this->redirect($this->Auth->redirectUrl());
 		}
+		$this->RBruteForce->check();	//unsuccessful logins will be checked
 		$this->Flash->error(__('Invalid username or password, try again'));
 	}
 }
