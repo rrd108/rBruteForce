@@ -10,6 +10,10 @@ use RBruteForce\Controller\AppController;
  */
 class RbruteforcelogsController extends AppController {
 
+	public function isAuthorized($user = null) {
+        return true;
+    }
+
 /**
  * Index method
  *

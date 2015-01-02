@@ -15,6 +15,11 @@ class RbruteforcesController extends AppController {
         parent::beforeFilter($event);
 	    $this->Auth->allow(['failed']);
 	}
+	
+	public function isAuthorized($user = null) {
+        return true;
+    }
+
 
 	public function failed(){
 	}
