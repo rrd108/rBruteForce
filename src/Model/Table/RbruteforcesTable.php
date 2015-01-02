@@ -30,11 +30,11 @@ class RbruteforcesTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->validatePresence('ip', 'create')
+			->requirePresence('ip', 'create')
 			->notEmpty('ip')
-			->validatePresence('url', 'create')
+			->requirePresence('url', 'create')
 			->notEmpty('url')
-			->validatePresence('expire', 'create')
+			->requirePresence('expire', 'create')
 			->notEmpty('expire', 'create');
 
 		return $validator;
