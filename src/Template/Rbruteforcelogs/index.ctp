@@ -17,7 +17,7 @@
 	<?php foreach ($rbruteforcelogs as $rbruteforcelog): ?>
 		<tr>
 			<td><?= $this->Number->format($rbruteforcelog->id) ?></td>
-			<td><?php print_r(unserialize($rbruteforcelog->data)); ?></td>
+			<td><?php print_r(h(unserialize($rbruteforcelog->data))); ?></td>
 			<td class="actions">
 				<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $rbruteforcelog->id], ['confirm' => __('Are you sure you want to delete # {0}?', $rbruteforcelog->id)]) ?>
 			</td>
