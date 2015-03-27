@@ -61,7 +61,7 @@ class RBruteForceComponent extends Component {
         
 		if($this->isBanned){
 			$this->delay();
-			$this->controller->redirect('/r_brute_force/rbruteforces/failed');
+			$this->controller->redirect('/r_brute_force/Rbruteforces/failed');
 		}
 
 		$this->RBruteForce->cleanupAttempts($this->options['cleanupAttempts']);
