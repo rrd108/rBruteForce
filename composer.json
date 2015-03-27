@@ -17,7 +17,7 @@
 		"source": "https://github.com/rrd108/rBruteForce"
 	},
 	"require": {
-		"cakephp/cakephp": "3.0.*-dev",
+		"cakephp/cakephp": "~3.0",
 		"cakephp/plugin-installer": "*"
 	},
 	"require-dev": {
