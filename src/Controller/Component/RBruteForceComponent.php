@@ -47,7 +47,7 @@ class RBruteForceComponent extends Component {
 
         if($this->options['attemptLog'] == 'all' ||
 				($this->options['attemptLog'] == 'beforeBan' && !$this->isBanned)){
-			$attempt = ['ip' => $this->request->env('HTTP_HOST'),
+			$attempt = ['ip' => $this->request->env('REMOTE_ADDR'),
 						'url' => $this->request->url,
 						'expire' => strtotime('+' . $this->options['expire']),
 						];
