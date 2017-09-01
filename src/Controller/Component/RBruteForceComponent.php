@@ -14,8 +14,9 @@ class RBruteForceComponent extends Component
         'dataLog'         => false,       //log the user submitted data
         'attemptLog'      => 'all',       //all|beforeBan
         'checkUrl'        => true,        //check url or not
-        'cleanupAttempts' => 1000         //delete all old entries from attempts database if there are more
+        'cleanupAttempts' => 1000,        //delete all old entries from attempts database if there are more
                                           //rows that this. This should be bigger than maxAttempts.
+        'urlToRedirect'   => '/r_brute_force/Rbruteforces/failed' //url to redirect if failed.
     ];
 
     private $isBanned = true;
@@ -40,9 +41,8 @@ class RBruteForceComponent extends Component
      * Check function to validate login.
      *
      * @param array $options
-     * @param string $redirect
      */
-    public function check($options = [], $redirect = '/r_brute_force/Rbruteforces/failed')
+    public function check($options = [])
     {
         $this->options = array_merge($this->options, $options);
 
@@ -68,7 +68,7 @@ class RBruteForceComponent extends Component
 
         if ($this->isBanned) {
             $this->delay();
-            $this->controller->redirect($redirect);
+            $this->controller->redirect($this->options['urlToRedirect']);
         }
 
         $this->RBruteForce->cleanupAttempts($this->options['cleanupAttempts']);
@@ -100,12 +100,13 @@ class RBruteForceComponent extends Component
     /**
      * Function to check if the ip is banned with max attempts passed via parameter.
      *
-     * @param $_maxAttemptsLogin
+     * @param array $options
      * @return bool
      */
-    public function isIpBanned($_maxAttemptsLogin)
+    public function isIpBanned($options = [])
     {
-        return ($this->getCount() >= $_maxAttemptsLogin) ? true : false;
+        $this->options = array_merge($this->options, $options);
+        return ($this->getCount() >= $this->options['maxAttempts']) ? true : false;
     }
 
     /**
