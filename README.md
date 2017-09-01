@@ -128,7 +128,7 @@ $options = [
 	'attemptLog' => 'beforeBan', //all|beforeBan
 	'checkUrl' => true,			 //check url or not
 	'cleanupAttempts' => 1000,	 //delete all old entries from attempts database if there are more rows that this
-	'urlRedirect'     => '/r_brute_force/Rbruteforces/failed' //url to redirect if failed.
+	'urlToRedirect'     => '/r_brute_force/Rbruteforces/failed' //url to redirect if failed.
 	];
 $this->RBruteForce->check($options);
 ```
