@@ -1,20 +1,21 @@
 {
-	"name": "rrd/rbruteforce",
+	"name": "egcservices/rbruteforce2",
 	"description": "CakePHP 3 Plugin for Protection Against BruteForce Attacks",
 	"type": "cakephp-plugin",
 	"keywords": ["cakephp", "brute force", "security"],
-	"homepage": "https://github.com/rrd108/rBruteForce",
+	"homepage": "https://github.com/elsongabriel/rBruteForce",
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "rrd",
-			"homepage": "http://webmania.cc",
+			"name": "egcservices",
+			"homepage": "http://egcservices.com.br",
 			"role": "Author"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/rrd108/rBruteForce/issues",
-		"source": "https://github.com/rrd108/rBruteForce"
+		"issues": "https://github.com/elsongabriel/rBruteForce/issues",
+		"source": "https://github.com/elsongabriel/rBruteForce"
+
 	},
 	"require": {
 		"cakephp/cakephp": "~3.0",
