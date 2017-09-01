@@ -3,19 +3,19 @@
 namespace RBruteForce\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 
 class RBruteForceComponent extends Component
 {
 
     private $options = [
-        'maxAttempts' => 4,       //max failed attempts before banning
-        'expire' => '3 minutes',  //expiration time
-        'dataLog' => false,       //log the user submitted data
-        'attemptLog' => 'all',    //all|beforeBan
-        'checkUrl' => true,       //check url or not
-        'cleanupAttempts' => 1000 //delete all old entries from attempts database if there are more rows that this. This should be bigger than maxAttempts
+        'maxAttempts'     => 4,           //max failed attempts before banning
+        'expire'          => '3 minutes', //expiration time
+        'dataLog'         => false,       //log the user submitted data
+        'attemptLog'      => 'all',       //all|beforeBan
+        'checkUrl'        => true,        //check url or not
+        'cleanupAttempts' => 1000         //delete all old entries from attempts database if there are more
+                                          //rows that this. This should be bigger than maxAttempts.
     ];
 
     private $isBanned = true;
@@ -36,13 +36,13 @@ class RBruteForceComponent extends Component
         $this->RBruteForce = TableRegistry::get('RBruteForce.Rbruteforces');
     }
 
-
     /**
      * Check function to validate login.
      *
      * @param array $options
+     * @param string $redirect
      */
-    public function check($options = [])
+    public function check($options = [], $redirect = '/r_brute_force/Rbruteforces/failed')
     {
         $this->options = array_merge($this->options, $options);
 
@@ -68,7 +68,7 @@ class RBruteForceComponent extends Component
 
         if ($this->isBanned) {
             $this->delay();
-            $this->controller->redirect('/r_brute_force/Rbruteforces/failed');
+            $this->controller->redirect($redirect);
         }
 
         $this->RBruteForce->cleanupAttempts($this->options['cleanupAttempts']);
@@ -95,6 +95,17 @@ class RBruteForceComponent extends Component
     public function delay()
     {
         sleep($this->getCount());
+    }
+
+    /**
+     * Function to check if the ip is banned with max attempts passed via parameter.
+     *
+     * @param $_maxAttemptsLogin
+     * @return bool
+     */
+    public function isIpBanned($_maxAttemptsLogin)
+    {
+        return ($this->getCount() >= $_maxAttemptsLogin) ? true : false;
     }
 
     /**
