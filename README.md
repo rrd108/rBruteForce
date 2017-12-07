@@ -36,38 +36,18 @@ CREATE TABLE IF NOT EXISTS `rbruteforces` (
 
 The migrations files could be found in `config/Migrations`.
 
-```
-//CreateRBruteForces Migration
-public function change()
-{
-	$table = $this->table('rbruteforces', ['id' => false, 'primary_key' => ['expire']]);
-	$table
-		->addColumn('ip', 'string', ['length' => 255])
-		->addColumn('url', 'string', ['length' => 255])
-		->addColumn('expire', 'timestamp', ['default' => null])
-		->addIndex('ip');
-	$table->create();
-}
-  
-//CreateRBruteForceLogs Migration
-public function change()
-{
-	$table = $this->table('rbruteforcelogs');
-	$table->addColumn('data', 'text', ['null' => true]);
-	$table->create();
-	$table->changeColumn('id', 'integer', ['signed' => false, 'identity' => true]);
-	$table->update();
-}
-```
-
 ### Install via composer. 
+
+````
+composer require rrd/rbruteforce
+````
 
 Add the plugin to your project's `composer.json` - something like this:
 
 ````json
 {
   "require": {
-    "egcservices/rbruteforce2": "*"
+    "rrd/rbruteforce": "*"
   }
 }
 ````
@@ -83,7 +63,7 @@ Because this plugin has the type cakephp-plugin set in it's own composer.json, c
 
 ## Reporting Issues
 
-If you have a problem with rBruteForce please report [here](https://github.com/elsongabriel/rBruteForce/issues)
+If you have a problem with rBruteForce please report [here](https://github.com/rrd108/rBruteForce/issues)
 
 # Documentation
 
