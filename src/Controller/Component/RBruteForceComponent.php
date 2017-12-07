@@ -30,10 +30,6 @@ class RBruteForceComponent extends Component
     public function initialize(array $config)
     {
         $this->controller = $this->_registry->getController();
-        $this->request = $this->controller->request;
-        $this->response = $this->controller->response;
-        //$this->session = $this->controller->request->session();
-
         $this->RBruteForce = TableRegistry::get('RBruteForce.Rbruteforces');
     }
 
@@ -54,8 +50,8 @@ class RBruteForceComponent extends Component
 
         if ($this->options['attemptLog'] == 'all' ||
             ($this->options['attemptLog'] == 'beforeBan' && !$this->isBanned)) {
-            $attempt = ['ip' => $this->request->env('REMOTE_ADDR'),
-                'url' => $this->request->url,
+            $attempt = ['ip' => $this->controller->request->env('REMOTE_ADDR'),
+                'url' => $this->controller->request->url,
                 'expire' => strtotime('+' . $this->options['expire']),
             ];
             $attempt = $this->RBruteForce->newEntity($attempt);
@@ -63,7 +59,7 @@ class RBruteForceComponent extends Component
         }
 
         if ($this->options['dataLog']) {
-            $this->dataLog($this->request->data);
+            $this->dataLog($this->controller->request->data);
         }
 
         if ($this->isBanned) {
@@ -117,11 +113,11 @@ class RBruteForceComponent extends Component
     public function getCount()
     {
         $count = $this->RBruteForce->find()
-            ->where(['ip' => $this->request->env('REMOTE_ADDR')])
+            ->where(['ip' => $this->controller->request->env('REMOTE_ADDR')])
             ->andWhere(['expire >= ' => time()])
             ->andWhere(['expire <= ' => strtotime('+' . $this->options['expire'])]);
         if ($this->options['checkUrl']) {
-            $count = $count->andWhere(['url' => $this->request->url]);
+            $count = $count->andWhere(['url' => $this->controller->request->url]);
         }
         $count = $count->count();
         return $count;
