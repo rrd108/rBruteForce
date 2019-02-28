@@ -30,7 +30,7 @@ class RBruteForceComponent extends Component
     public function initialize(array $config)
     {
         $this->controller = $this->_registry->getController();
-        $this->RBruteForce = TableRegistry::get('RBruteForce.Rbruteforces');
+        $this->RBruteForce = TableRegistry::getTableLocator()->get('RBruteForce.Rbruteforces');
     }
 
     /**
@@ -113,11 +113,11 @@ class RBruteForceComponent extends Component
     public function getCount()
     {
         $count = $this->RBruteForce->find()
-            ->where(['ip' => $this->controller->request->env('REMOTE_ADDR')])
+            ->where(['ip' => $this->controller->request->getEnv('REMOTE_ADDR')])
             ->andWhere(['expire >= ' => time()])
             ->andWhere(['expire <= ' => strtotime('+' . $this->options['expire'])]);
         if ($this->options['checkUrl']) {
-            $count = $count->andWhere(['url' => $this->controller->request->url]);
+            $count = $count->andWhere(['url' => $this->controller->request->getParam('url')]);
         }
         $count = $count->count();
         return $count;
@@ -125,7 +125,7 @@ class RBruteForceComponent extends Component
 
     public function dataLog($data)
     {
-        $dataLog = TableRegistry::get('rbruteforcelogs');
+        $dataLog = TableRegistry::getTableLocator()->get('rbruteforcelogs');
         $data = $dataLog->newEntity(['data' => serialize($data)]);
         if ($dataLog->save($data)) {
             return true;
