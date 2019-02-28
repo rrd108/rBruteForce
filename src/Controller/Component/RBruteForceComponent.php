@@ -50,8 +50,8 @@ class RBruteForceComponent extends Component
 
         if ($this->options['attemptLog'] == 'all' ||
             ($this->options['attemptLog'] == 'beforeBan' && !$this->isBanned)) {
-            $attempt = ['ip' => $this->controller->request->env('REMOTE_ADDR'),
-                'url' => $this->controller->request->url,
+            $attempt = ['ip' => $this->controller->request->getEnv('REMOTE_ADDR'),
+                'url' => $this->controller->request->getPath(),
                 'expire' => strtotime('+' . $this->options['expire']),
             ];
             $attempt = $this->RBruteForce->newEntity($attempt);
@@ -59,7 +59,7 @@ class RBruteForceComponent extends Component
         }
 
         if ($this->options['dataLog']) {
-            $this->dataLog($this->controller->request->data);
+            $this->dataLog($this->controller->request->getData());
         }
 
         if ($this->isBanned) {
@@ -117,7 +117,7 @@ class RBruteForceComponent extends Component
             ->andWhere(['expire >= ' => time()])
             ->andWhere(['expire <= ' => strtotime('+' . $this->options['expire'])]);
         if ($this->options['checkUrl']) {
-            $count = $count->andWhere(['url' => $this->controller->request->getParam('url')]);
+            $count = $count->andWhere(['url' => $this->controller->request->getPath()]);
         }
         $count = $count->count();
         return $count;
