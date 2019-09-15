@@ -17,9 +17,9 @@ class RbruteforcesTable extends Table {
  * @return void
  */
 	public function initialize(array $config) {
-		$this->table('rbruteforces');
-		$this->displayField('expire');
-		$this->primaryKey('expire');
+		$this->setTable('rbruteforces');
+		$this->setDisplayField('expire');
+		$this->setPrimaryKey('expire');
 	}
 
 /**
