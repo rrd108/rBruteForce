@@ -17,9 +17,9 @@ class RbruteforcelogsTable extends Table {
  * @return void
  */
 	public function initialize(array $config) {
-		$this->table('rbruteforcelogs');
-		$this->displayField('id');
-		$this->primaryKey('id');
+		$this->setTable('rbruteforcelogs');
+		$this->setDisplayField('id');
+		$this->setPrimaryKey('id');
 	}
 
 /**
